@@ -908,7 +908,6 @@
       width: 60px;
       height: 60px;
       object-fit: contain;
-      filter: brightness(0) invert(1);
       transition: all 0.3s;
     }
 
@@ -919,7 +918,8 @@
     }
 
     .tech-chip:hover img {
-      filter: brightness(0) invert(1) drop-shadow(0 0 8px rgba(37, 99, 235, 0.5));
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 8px rgba(37, 99, 235, 0.3));
     }
 
     /* Mobile Technologies Grid */
@@ -1673,7 +1673,7 @@
           <div class="domain-card-label">Gaming</div>
         </div>
         <div class="domain-card">
-          <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&q=80" alt="Healthcare">
+          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&q=80" alt="Healthcare">
           <div class="domain-card-label">Health Care</div>
         </div>
         <div class="domain-card">
