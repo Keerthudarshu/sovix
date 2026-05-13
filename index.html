@@ -44,16 +44,19 @@
       overflow-x: hidden;
     }
 
-  img, video, iframe 
-  {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  }
-  
+    img,
+    video,
+    iframe {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
     /* Mobile Snap Scrolling */
     @media (max-width: 900px) {
-      html, body {
+
+      html,
+      body {
         overflow-x: hidden;
         width: 100%;
         position: relative;
@@ -61,7 +64,7 @@
         padding: 0;
         box-sizing: border-box;
       }
-      
+
       * {
         box-sizing: border-box;
       }
@@ -100,16 +103,16 @@
       position: fixed;
       top: 0;
       left: 0;
-      right: 0;
-      z-index: 1000;
-      background: rgba(10, 14, 26, 0.95);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--border);
+      width: 100%;
+      height: 80px;
       padding: 0 5%;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      height: 70px;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.3s;
+      background: #080c17;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     /* Carousel indicators style */
@@ -121,7 +124,7 @@
       margin: 18px 0 0 0;
       min-height: 24px;
     }
-    
+
     .carousel-dot {
       width: 10px;
       height: 10px;
@@ -130,7 +133,7 @@
       transition: background 0.2s, transform 0.2s;
       display: inline-block;
     }
-    
+
     .carousel-dot.active {
       background: var(--accent2);
       transform: scale(1.3);
@@ -139,10 +142,10 @@
 
     .logo {
       font-family: 'Montserrat', sans-serif;
-      font-weight: 800;
-      font-size: 1.4rem;
+      font-weight: 900;
+      font-size: 1.6rem;
       color: var(--white);
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       cursor: pointer;
     }
 
@@ -157,16 +160,15 @@
     }
 
     .nav-links a {
-      color: var(--light-gray);
+      color: rgba(255, 255, 255, 0.8);
       text-decoration: none;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 600;
-      letter-spacing: 0.5px;
-      transition: color 0.3s;
+      transition: all 0.3s;
     }
 
     .nav-links a:hover {
-      color: var(--accent2);
+      color: var(--accent);
     }
 
     .nav-cta {
@@ -200,10 +202,10 @@
       transition: all 0.3s;
     }
 
-    /* ===== HERO ===== */
+    /* ===== HERO (Light Mode) ===== */
     .hero {
       min-height: 100vh;
-      background: linear-gradient(135deg, #060810 0%, #0a1628 50%, #0d1e3d 100%);
+      background: #f8fafc;
       display: flex;
       align-items: center;
       padding: 100px 5% 60px;
@@ -211,32 +213,36 @@
       overflow: hidden;
     }
 
-    .hero::before {
-      content: '';
+    #hero-globe {
       position: absolute;
-      top: -20%;
-      right: -10%;
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(37, 99, 235, 0.15) 0%, transparent 70%);
-      border-radius: 50%;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+      pointer-events: none;
     }
 
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -10%;
-      left: -5%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%);
-      border-radius: 50%;
-    }
+    /* Removed old background blobs */
 
     .hero-content {
       flex: 1;
       z-index: 2;
       max-width: 560px;
+    }
+
+    .hero h1 {
+      color: #0f172a;
+    }
+
+    .hero p {
+      color: #475569;
+    }
+
+    .hero-badge {
+      background: rgba(37, 99, 235, 0.1);
+      border: 1px solid rgba(37, 99, 235, 0.2);
+      color: var(--accent);
     }
 
     .hero-badge {
@@ -542,7 +548,8 @@
     .domain-card img {
       width: 100%;
       height: 160px;
-      object-fit: cover;
+      object-fit: contain;
+      background: white;
       display: block;
     }
 
@@ -1385,7 +1392,7 @@
         width: 100%;
         padding: 0 20px;
       }
-      
+
       .hero-content {
         max-width: 100%;
         width: 100%;
@@ -1394,11 +1401,13 @@
 
       .hero-btns {
         justify-content: center;
-        gap: 10px;
+        margin-top: 2.5rem;
+        gap: 12px;
         flex-wrap: nowrap !important;
       }
 
-      .hero-btns a, .hero-btns button {
+      .hero-btns a,
+      .hero-btns button {
         padding: 0.7rem 1rem !important;
         font-size: 0.85rem !important;
         white-space: nowrap;
@@ -1406,11 +1415,13 @@
         max-width: 150px;
       }
 
-      .who-content, .about-text, .story-content {
+      .who-content,
+      .about-text,
+      .story-content {
         padding: 0 20px;
         text-align: center;
       }
-      
+
       .divider.left {
         margin: 1rem auto 1.5rem;
       }
@@ -1483,6 +1494,26 @@
         border-radius: 5px;
         box-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
       }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+        text-align: left;
+      }
+
+      .footer-grid > div:first-child {
+        grid-column: 1 / span 2;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .footer-col:nth-child(2) { /* Services */
+        order: 3;
+      }
+
+      .footer-col:nth-child(3) { /* Domains */
+        order: 2;
+      }
     }
 
     @media (max-width: 600px) {
@@ -1492,80 +1523,97 @@
     }
   </style>
   <script>
-     // Carousel Indicator Logic
-      function createIndicators(containerId, count, gridSelector, cardSelector) {
-        const container = document.getElementById(containerId);
-        if (!container) return;
-        container.innerHTML = '';
-        for (let i = 0; i < count; i++) {
-          const dot = document.createElement('span');
-          dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
-          dot.onclick = () => {
-            const grid = document.querySelector(gridSelector);
-            const cards = document.querySelectorAll(cardSelector);
-            if (grid && cards[i]) {
-              grid.scrollTo({ left: cards[i].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+    // Carousel Indicator Logic
+    function createIndicators(containerId, count, gridSelector, cardSelector) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      container.innerHTML = '';
+      for (let i = 0; i < count; i++) {
+        const dot = document.createElement('span');
+        dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        dot.onclick = () => {
+          const grid = document.querySelector(gridSelector);
+          const cards = document.querySelectorAll(cardSelector);
+          if (grid && cards[i]) {
+            grid.scrollTo({ left: cards[i].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+          }
+        };
+        container.appendChild(dot);
+      }
+    }
+
+    function animateIndicators(containerId, count, scrollFn) {
+      let interval;
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            if (!interval) {
+              interval = setInterval(() => {
+                if (window.innerWidth > 900) return;
+                const dots = container.querySelectorAll('.carousel-dot');
+                const activeIdx = Array.from(dots).findIndex(dot => dot.classList.contains('active'));
+                const nextIdx = (activeIdx + 1) % count;
+
+                dots.forEach((dot, i) => dot.classList.toggle('active', i === nextIdx));
+                if (typeof scrollFn === 'function') scrollFn(nextIdx);
+              }, 2000);
             }
-          };
-          container.appendChild(dot);
+          } else {
+            clearInterval(interval);
+            interval = null;
+          }
+        });
+      }, { threshold: 0.5 });
+
+      const section = container.closest('section');
+      if (section) observer.observe(section);
+    }
+
+    // For each carousel section
+    document.addEventListener('DOMContentLoaded', () => {
+      // DOMAIN
+      const domainCards = document.querySelectorAll('.domain-grid .domain-card');
+      createIndicators('domain-indicators', domainCards.length, '.domain-grid', '.domain-card');
+      animateIndicators('domain-indicators', domainCards.length, idx => {
+        const grid = document.querySelector('.domain-grid');
+        if (grid && window.innerWidth <= 900) {
+          grid.scrollTo({ left: domainCards[idx].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
         }
-      }
-
-      function animateIndicators(containerId, count, scrollFn) {
-        let idx = 0;
-        setInterval(() => {
-          if (window.innerWidth > 900) return;
-          idx = (idx + 1) % count;
-          const container = document.getElementById(containerId);
-          if (!container) return;
-          const dots = container.querySelectorAll('.carousel-dot');
-          dots.forEach((dot, i) => dot.classList.toggle('active', i === idx));
-          if (typeof scrollFn === 'function') scrollFn(idx);
-        }, 2000);
-      }
-
-      // For each carousel section
-      document.addEventListener('DOMContentLoaded', () => {
-        // DOMAIN
-        const domainCards = document.querySelectorAll('.domain-grid .domain-card');
-        createIndicators('domain-indicators', domainCards.length, '.domain-grid', '.domain-card');
-        animateIndicators('domain-indicators', domainCards.length, idx => {
-          const grid = document.querySelector('.domain-grid');
-          if (grid && window.innerWidth <= 900) {
-            grid.scrollTo({ left: domainCards[idx].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
-          }
-        });
-
-        // HOW IT WORKS
-        const howCards = document.querySelectorAll('.how-grid .how-card');
-        createIndicators('how-indicators', howCards.length, '.how-grid', '.how-card');
-        animateIndicators('how-indicators', howCards.length, idx => {
-          const grid = document.querySelector('.how-grid');
-          if (grid && window.innerWidth <= 900) {
-            grid.scrollTo({ left: howCards[idx].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
-          }
-        });
-
-        // SERVICES
-        const serviceCards = document.querySelectorAll('.services-grid .service-card');
-        createIndicators('services-indicators', serviceCards.length, '.services-grid', '.service-card');
-        animateIndicators('services-indicators', serviceCards.length, idx => {
-          const grid = document.querySelector('.services-grid');
-          if (grid && window.innerWidth <= 900) {
-            grid.scrollTo({ left: serviceCards[idx].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
-          }
-        });
-
-        // CUSTOMERS
-        const customerCards = document.querySelectorAll('.customers-grid .customer-card');
-        createIndicators('customers-indicators', customerCards.length, '.customers-grid', '.customer-card');
-        animateIndicators('customers-indicators', customerCards.length, idx => {
-          const grid = document.querySelector('.customers-grid');
-          if (grid && window.innerWidth <= 900) {
-            grid.scrollTo({ left: customerCards[idx].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
-          }
-        });
       });
+
+      // HOW IT WORKS
+      const howCards = document.querySelectorAll('.how-grid .how-card');
+      createIndicators('how-indicators', howCards.length, '.how-grid', '.how-card');
+      animateIndicators('how-indicators', howCards.length, idx => {
+        const grid = document.querySelector('.how-grid');
+        if (grid && window.innerWidth <= 900) {
+          grid.scrollTo({ left: howCards[idx].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+        }
+      });
+
+      // SERVICES
+      const serviceCards = document.querySelectorAll('.services-grid .service-card');
+      createIndicators('services-indicators', serviceCards.length, '.services-grid', '.service-card');
+      animateIndicators('services-indicators', serviceCards.length, idx => {
+        const grid = document.querySelector('.services-grid');
+        if (grid && window.innerWidth <= 900) {
+          grid.scrollTo({ left: serviceCards[idx].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+        }
+      });
+
+      // CUSTOMERS
+      const customerCards = document.querySelectorAll('.customers-grid .customer-card');
+      createIndicators('customers-indicators', customerCards.length, '.customers-grid', '.customer-card');
+      animateIndicators('customers-indicators', customerCards.length, idx => {
+        const grid = document.querySelector('.customers-grid');
+        if (grid && window.innerWidth <= 900) {
+          grid.scrollTo({ left: customerCards[idx].offsetLeft - grid.offsetLeft, behavior: 'smooth' });
+        }
+      });
+    });
   </script>
 </head>
 
@@ -1592,6 +1640,7 @@
 
     <!-- HERO -->
     <section class="hero">
+      <canvas id="hero-globe"></canvas>
       <div class="hero-content">
         <div class="hero-badge">⭐ One of the best & affordable consultancy</div>
         <h1>We Build Products That <span>Users Like</span></h1>
@@ -1599,7 +1648,7 @@
           the best rates, operating from India.</p>
         <div class="hero-btns">
           <a href="https://Sovixs.co/" target="_blank" class="btn-primary">Get Started</a>
-          <button class="btn-outline" onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'})">Learn
+          <button class="btn-outline" style="color: #0f172a; border-color: #0f172a;" onclick="document.getElementById('who').scrollIntoView({behavior:'smooth'})">Learn
             More</button>
         </div>
       </div>
@@ -1673,7 +1722,7 @@
           <div class="domain-card-label">Gaming</div>
         </div>
         <div class="domain-card">
-          <img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=500&q=80" alt="Healthcare">
+          <img src="image/doctor-woman-smiling.png" alt="Healthcare">
           <div class="domain-card-label">Health Care</div>
         </div>
         <div class="domain-card">
@@ -1699,7 +1748,7 @@
         <h2 class="section-title">Simple Steps To <span>Get Started</span></h2>
         <div class="divider"></div>
       </div>
-        <div class="how-grid">
+      <div class="how-grid">
         <div class="how-card">
           <div class="how-num">01</div>
           <div class="how-icon">🛠️</div>
@@ -1732,7 +1781,7 @@
         <h2 class="section-title">Our Core <span>Services</span></h2>
         <div class="divider"></div>
       </div>
-        <div class="services-grid">
+      <div class="services-grid">
         <div class="service-card">
           <div class="service-img">
             <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=700&q=80" alt="Web Development">
@@ -1819,7 +1868,7 @@
         <p class="section-sub">Our contented and enthusiastic customers who have experienced the exceptional quality of
           our products and impeccable service are a constant source of pride and motivation.</p>
       </div>
-        <div class="customers-grid">
+      <div class="customers-grid">
         <div class="customer-card">
           <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?w=400&q=80" alt="Hospital">
           <div class="customer-info">
@@ -2132,6 +2181,166 @@
 
       updateActiveCard();
     });
+
+    /* ── CUSTOM GLOBE SCRIPT ── */
+    (function() {
+      const canvas = document.getElementById('hero-globe');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      function resize() {
+        canvas.width = canvas.offsetWidth;
+        canvas.height = canvas.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', () => { resize(); buildDots(); });
+
+      /* ── world land polygons (lat/lon) ── */
+      const LAND = [
+        [[55,30],[70,30],[75,50],[72,80],[68,100],[65,130],[60,140],[55,135],[52,120],[50,100],[52,70],[55,50]],
+        [[20,73],[25,80],[22,90],[20,100],[18,108],[22,115],[28,120],[32,118],[38,115],[42,110],[45,90],[40,80],[35,73],[28,73]],
+        [[8,68],[8,77],[12,80],[18,83],[22,88],[22,92],[18,95],[12,80],[8,77],[8,72],[15,72],[20,73],[22,73],[22,68]],
+        [[5,100],[10,100],[15,102],[18,104],[20,104],[22,108],[20,110],[18,104],[15,108],[10,105],[5,103]],
+        [[31,130],[33,131],[35,135],[37,136],[40,140],[43,141],[42,143],[38,141],[35,137],[32,131]],
+        [[34,126],[35,128],[37,128],[38,126],[35,126]],
+        [[5,119],[8,122],[10,124],[12,122],[10,119],[7,118]],
+        [[5,95],[2,100],[-2,104],[-5,105],[-3,100],[0,98],[3,97]],
+        [[-6,106],[-6,108],[-7,110],[-8,112],[-8,114],[-7,110],[-6,108]],
+        [[-1,109],[2,110],[4,114],[5,117],[3,117],[0,114],[-2,112]],
+        [[22,38],[25,38],[28,40],[30,48],[22,56],[18,55],[12,44],[15,42],[18,38]],
+        [[30,35],[35,36],[37,42],[38,48],[35,50],[30,48],[28,40]],
+        [[-10,34],[-5,36],[0,40],[5,42],[10,42],[15,40],[10,38],[5,38],[0,36],[-5,35]],
+        [[15,38],[20,37],[25,32],[30,28],[35,10],[30,10],[20,15],[15,20]],
+        [[45,10],[50,15],[55,20],[58,25],[60,30],[55,30],[52,25],[48,20],[45,15]],
+        [[55,10],[58,10],[62,15],[68,20],[70,25],[65,28],[60,25],[58,18],[55,15]],
+        [[-15,129],[-12,136],[-15,140],[-18,146],[-25,153],[-32,152],[-38,145],[-38,140],[-35,136],[-32,132],[-25,126],[-18,122]],
+        [[-36,174],[-38,175],[-40,176],[-41,174],[-38,173]],
+        [[-44,168],[-46,168],[-46,170],[-44,170]],
+        [[36,352],[38,350],[43,348],[44,345],[42,343],[38,342],[36,352]],
+        [[50,354],[52,355],[55,356],[58,354],[55,352],[52,352],[50,354]],
+        [[0,10],[5,5],[10,3],[15,3],[20,15],[15,20],[10,15],[5,10],[0,10]],
+        [[0,10],[0,25],[-5,30],[-10,34],[-15,32],[-20,25],[-25,20],[-30,18],[-32,18],[-30,28],[-25,33],[-18,36],[-10,40],[0,40],[0,25],[0,10]],
+        [[25,280],[30,280],[35,282],[40,285],[45,285],[50,286],[55,285],[50,280],[45,278],[40,278],[35,278],[30,275],[25,280]],
+        [[25,250],[30,248],[35,242],[40,238],[45,235],[50,232],[55,230],[50,240],[45,248],[40,252],[35,255],[30,258],[25,250]],
+        [[10,278],[15,277],[20,280],[25,280],[20,285],[15,285],[10,285],[10,278]],
+        [[0,290],[5,292],[10,293],[5,298],[0,300],[-5,296],[-5,292],[0,290]],
+        [[-5,292],[-10,295],[-15,300],[-20,302],[-30,305],[-40,306],[-45,300],[-40,295],[-30,300],[-20,297],[-10,293],[-5,292]],
+        [[60,310],[65,315],[70,320],[75,318],[72,310],[68,305],[63,305],[60,310]],
+        [[50,240],[55,245],[60,255],[65,260],[70,265],[68,275],[65,280],[60,278],[55,270],[50,260],[50,240]],
+      ];
+
+      /* ── highlighted regions (lat/lon centre + radius) ── */
+      const HIGHLIGHTS = [
+        { lat: 20, lon: 78, r: 14, label: 'India' },
+        { lat: 35, lon: 105, r: 18, label: 'China' },
+        { lat: 35, lon: 138, r: 8, label: 'Japan' },
+        { lat: 3, lon: 108, r: 10, label: 'SE Asia' },
+        { lat: 25, lon: 45, r: 12, label: 'Middle East' },
+        { lat: -25, lon: 135, r: 14, label: 'Australia' },
+        { lat: 55, lon: 37, r: 10, label: 'Russia W' },
+      ];
+
+      function pip(lat, lon, poly) {
+        let inside = false;
+        for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
+          const [yi, xi] = poly[i], [yj, xj] = poly[j];
+          if (((xi > lon) !== (xj > lon)) && lat < (yj - yi) * (lon - xi) / (xj - xi) + yi) inside = !inside;
+        }
+        return inside;
+      }
+      function isLand(lat, lon) { return LAND.some(p => pip(lat, lon, p)); }
+
+      function inHighlight(lat, lon) {
+        for (let i = 0; i < HIGHLIGHTS.length; i++) {
+          const h = HIGHLIGHTS[i];
+          const dlat = lat - h.lat, dlon = lon - h.lon;
+          if (Math.sqrt(dlat * dlat + dlon * dlon) < h.r) return i;
+        }
+        return -1;
+      }
+
+      function ll2xyz(lat, lon) {
+        const phi = (90 - lat) * Math.PI / 180;
+        const th = lon * Math.PI / 180;
+        return [Math.sin(phi) * Math.cos(th), Math.cos(phi), Math.sin(phi) * Math.sin(th)];
+      }
+      function rotY([x, y, z], a) {
+        return [x * Math.cos(a) + z * Math.sin(a), y, -x * Math.sin(a) + z * Math.cos(a)];
+      }
+
+      let dots = [];
+      function buildDots() {
+        dots = [];
+        const STEP = 6.5;
+        for (let lat = -80; lat <= 80; lat += STEP * 0.9) {
+          const circ = Math.cos(Math.abs(lat) * Math.PI / 180);
+          const n = Math.max(4, Math.round(360 * circ / STEP));
+          for (let i = 0; i < n; i++) {
+            const lon = (i / n) * 360 - 180;
+            const land = isLand(lat, lon);
+            const hi = land ? inHighlight(lat, lon) : -1;
+            dots.push({ xyz: ll2xyz(lat, lon), land, hi });
+          }
+        }
+      }
+      buildDots();
+
+      let angle = 0, t = 0;
+
+      function draw() {
+        const W = canvas.width, H = canvas.height;
+        const isMobile = window.innerWidth <= 900;
+        const R = isMobile ? Math.min(W, H) * 0.48 : Math.min(W, H) * 0.42;
+        const cx = isMobile ? W * 0.5 : W * 0.65;
+        const cy = H * 0.52;
+
+        ctx.clearRect(0, 0, W, H);
+
+        /* pulse factor */
+        const pulse = 0.5 + 0.5 * Math.sin(t * 0.05);
+
+        /* project & sort */
+        const proj = [];
+        for (const d of dots) {
+          const r = rotY(d.xyz, angle);
+          if (r[2] < -0.01) continue;
+          proj.push({ ...d, r, sx: cx + r[0] * R, sy: cy - r[1] * R });
+        }
+        proj.sort((a, b) => a.r[2] - b.r[2]);
+
+        /* light direction */
+        const lx = 0.5, ly = -0.35, lz = 0.8;
+        const ll = Math.sqrt(lx * lx + ly * ly + lz * lz);
+
+        for (const d of proj) {
+          const brt = Math.max(0.04, d.r[0] * (lx / ll) + d.r[1] * (ly / ll) + d.r[2] * (lz / ll));
+          const baseSize = isMobile ? (W / 600) : (W / 1400);
+          const sz = (1.8 + 0.5 * d.r[2]) * baseSize;
+
+          if (d.hi >= 0) {
+            /* highlighted land dot — glowing accent */
+            const glow = 0.6 + 0.4 * pulse;
+            const v = Math.round(brt * 100);
+            ctx.fillStyle = `rgba(37, 99, 235, ${Math.min(1, brt + 0.5 * glow)})`;
+            ctx.beginPath(); ctx.arc(d.sx, d.sy, sz * (1.5 + 0.4 * pulse), 0, Math.PI * 2); ctx.fill();
+          } else if (d.land) {
+            const v = Math.round((1 - brt) * 150);
+            ctx.fillStyle = `rgb(${v},${v + 20},${v + 50})`;
+            ctx.beginPath(); ctx.arc(d.sx, d.sy, sz, 0, Math.PI * 2); ctx.fill();
+          } else {
+            const v = Math.round((1 - brt) * 50 + 180);
+            ctx.fillStyle = `rgb(${v},${v},${v})`;
+            ctx.beginPath(); ctx.arc(d.sx, d.sy, sz * 0.65, 0, Math.PI * 2); ctx.fill();
+          }
+        }
+
+        angle += 0.003;
+        t++;
+        requestAnimationFrame(draw);
+      }
+
+      draw();
+    })();
   </script>
 </body>
 
