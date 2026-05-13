@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sovix — We Build Products Users Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --cream: #FAF8F5;
+    --warm-white: #FFFFFF;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --gold-dark: #9A7A4A;
+    --charcoal: #1A1A1A;
+    --mid: #4A4A4A;
+    --light: #8A8A8A;
+    --border: rgba(201,169,110,0.2);
+    --card-bg: rgba(255,255,255,0.8);
+    --shadow: 0 4px 40px rgba(0,0,0,0.06);
+    --shadow-hover: 0 12px 60px rgba(0,0,0,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 6vw;
+    background: rgba(250,248,245,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    transition: box-shadow .3s;
+  }
+  nav.scrolled { box-shadow: var(--shadow); }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 700; letter-spacing: .04em;
+    color: var(--charcoal);
+    text-decoration: none;
+  }
+  .logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.4rem; list-style: none; }
+  .nav-links a {
+    font-size: .85rem; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; text-decoration: none; color: var(--mid);
+    transition: color .25s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-cta {
+    background: var(--charcoal); color: #fff;
+    padding: .6rem 1.4rem; border-radius: 2px;
+    font-size: .82rem; font-weight: 500; letter-spacing: .06em;
+    text-transform: uppercase; text-decoration: none;
+    transition: background .25s;
+  }
+  .nav-cta:hover { background: var(--gold-dark); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 8rem 6vw 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-shape {
+    position: absolute; top: -10%; right: -5%;
+    width: 55vw; height: 120%;
+    background: linear-gradient(135deg, #F0EDE6 0%, #E8DFC9 50%, #F5F0E8 100%);
+    clip-path: polygon(15% 0%, 100% 0%, 100% 100%, 0% 100%);
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: var(--gold-light); color: var(--gold-dark);
+    font-size: .75rem; font-weight: 600; letter-spacing: .1em;
+    text-transform: uppercase; padding: .4rem 1rem; border-radius: 2px;
+    margin-bottom: 1.8rem;
+  }
+  .hero-tag::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 5vw, 5.5rem);
+    font-weight: 300; line-height: 1.08;
+    color: var(--charcoal); margin-bottom: 1.6rem;
+  }
+  h1 em { font-style: italic; color: var(--gold); }
+  .hero-desc {
+    font-size: 1.05rem; line-height: 1.75; color: var(--mid);
+    max-width: 480px; margin-bottom: 2.5rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--charcoal); color: #fff;
+    padding: .85rem 2rem; border-radius: 2px;
+    font-size: .9rem; font-weight: 500; letter-spacing: .04em;
+    text-decoration: none; transition: background .25s, transform .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-primary:hover { background: var(--gold-dark); transform: translateY(-2px); }
+  .btn-outline {
+    border: 1.5px solid var(--charcoal); color: var(--charcoal);
+    padding: .85rem 2rem; border-radius: 2px;
+    font-size: .9rem; font-weight: 500; letter-spacing: .04em;
+    text-decoration: none; transition: border-color .25s, color .25s, transform .2s;
+    display: inline-flex; align-items: center; gap: .5rem;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold-dark); transform: translateY(-2px); }
+
+  .hero-visual { position: relative; z-index: 1; display: flex; justify-content: center; align-items: center; }
+  .hero-card-stack { position: relative; width: 380px; height: 400px; }
+  .hcard {
+    position: absolute; background: var(--card-bg);
+    backdrop-filter: blur(10px); border: 1px solid var(--border);
+    border-radius: 12px; padding: 1.6rem; box-shadow: var(--shadow);
+  }
+  .hcard.main { width: 300px; top: 40px; left: 40px; }
+  .hcard.float1 { width: 180px; top: 0; right: 0; }
+  .hcard.float2 { width: 200px; bottom: 20px; left: 0; }
+  .hcard-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 700; color: var(--gold);
+    line-height: 1;
+  }
+  .hcard-label { font-size: .8rem; color: var(--light); margin-top: .2rem; letter-spacing: .04em; }
+  .hcard-bar { height: 4px; background: var(--gold-light); border-radius: 2px; margin-top: 1rem; overflow: hidden; }
+  .hcard-bar-fill { height: 100%; background: var(--gold); border-radius: 2px; }
+  .hcard-dots { display: flex; gap: .4rem; margin-top: .8rem; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold-light); }
+  .dot.active { background: var(--gold); }
+
+  /* ── STATS ── */
+  #stats {
+    background: var(--charcoal);
+    padding: 4rem 6vw;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .stat { text-align: center; }
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.5rem; font-weight: 300; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-label { font-size: .85rem; color: rgba(255,255,255,.6); margin-top: .5rem; letter-spacing: .06em; text-transform: uppercase; }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 7rem 6vw; }
+  .section-tag {
+    display: inline-block;
+    font-size: .75rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 3.5vw, 3.5rem);
+    font-weight: 300; line-height: 1.15;
+    color: var(--charcoal); margin-bottom: 1.2rem;
+  }
+  .section-sub { font-size: 1rem; line-height: 1.75; color: var(--mid); max-width: 560px; }
+
+  /* ── WHO WE ARE ── */
+  #about { background: var(--warm-white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .about-visual { position: relative; }
+  .about-img-frame {
+    width: 100%; aspect-ratio: 4/5;
+    background: linear-gradient(145deg, #F0EDE6, #E8DFC9);
+    border-radius: 4px;
+    position: relative; overflow: hidden;
+  }
+  .about-img-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(201,169,110,0.08) 30px, rgba(201,169,110,0.08) 31px);
+  }
+  .about-badge {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    background: var(--charcoal); color: #fff;
+    padding: 1.5rem 2rem; border-radius: 4px;
+    text-align: center;
+  }
+  .about-badge-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.5rem; font-weight: 700; color: var(--gold); display: block;
+  }
+  .about-badge-text { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.7); }
+  .about-content { display: flex; flex-direction: column; gap: 1.5rem; }
+  .about-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-top: .5rem; }
+  .about-list li {
+    display: flex; align-items: flex-start; gap: .8rem;
+    font-size: .95rem; color: var(--mid); line-height: 1.6;
+  }
+  .about-list li::before {
+    content: ''; flex-shrink: 0;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--gold-light); border: 2px solid var(--gold);
+    margin-top: .15rem;
+  }
+
+  /* ── DOMAINS ── */
+  #domains { background: var(--cream); }
+  .domains-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; margin-top: 3rem;
+  }
+  .domain-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 8px; padding: 2rem;
+    transition: box-shadow .3s, transform .3s, border-color .3s;
+    cursor: default;
+  }
+  .domain-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-6px); border-color: var(--gold); }
+  .domain-icon {
+    width: 52px; height: 52px; background: var(--gold-light);
+    border-radius: 8px; display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.2rem; font-size: 1.4rem;
+  }
+  .domain-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--charcoal);
+    margin-bottom: .4rem;
+  }
+  .domain-desc { font-size: .85rem; color: var(--light); line-height: 1.6; }
+
+  /* ── HOW IT WORKS ── */
+  #how { background: var(--warm-white); }
+  .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+  .how-steps { display: flex; flex-direction: column; gap: 0; }
+  .how-step {
+    display: flex; gap: 1.5rem;
+    padding: 2rem 0; border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .how-step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; font-weight: 300; color: var(--gold-light);
+    line-height: 1; flex-shrink: 0; width: 60px;
+    transition: color .3s;
+  }
+  .how-step:hover .step-num { color: var(--gold); }
+  .step-content h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 600; color: var(--charcoal);
+    margin-bottom: .5rem;
+  }
+  .step-content p { font-size: .9rem; color: var(--mid); line-height: 1.65; }
+
+  .specialization-cards { display: flex; flex-direction: column; gap: 1.2rem; }
+  .spec-card {
+    background: var(--cream); border: 1px solid var(--border);
+    border-left: 3px solid var(--gold); border-radius: 0 8px 8px 0;
+    padding: 1.4rem 1.6rem;
+  }
+  .spec-card h4 { font-size: 1rem; font-weight: 600; color: var(--charcoal); margin-bottom: .3rem; }
+  .spec-card p { font-size: .85rem; color: var(--mid); line-height: 1.6; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--cream); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; margin-top: 3rem; }
+  .service-card {
+    background: var(--warm-white); border: 1px solid var(--border);
+    border-radius: 10px; padding: 2.4rem; position: relative; overflow: hidden;
+    transition: box-shadow .3s, transform .3s;
+  }
+  .service-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-5px); }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+    transform: scaleX(0); transform-origin: left; transition: transform .4s;
+  }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-icon { font-size: 2rem; margin-bottom: 1.2rem; }
+  .service-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem; font-weight: 600; color: var(--charcoal);
+    margin-bottom: .8rem;
+  }
+  .service-desc { font-size: .9rem; color: var(--mid); line-height: 1.75; }
+
+  /* ── TECHNOLOGIES ── */
+  #tech { background: var(--charcoal); }
+  #tech .section-title { color: #fff; }
+  #tech .section-tag { color: var(--gold); }
+  #tech .section-sub { color: rgba(255,255,255,.6); }
+  .tech-grid {
+    display: grid; grid-template-columns: repeat(6, 1fr);
+    gap: 1.2rem; margin-top: 3rem;
+  }
+  .tech-pill {
+    background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 8px; padding: 1.2rem .8rem;
+    text-align: center; font-size: .85rem; font-weight: 500;
+    color: rgba(255,255,255,.8); letter-spacing: .04em;
+    transition: background .3s, border-color .3s, color .3s;
+  }
+  .tech-pill:hover { background: rgba(201,169,110,.15); border-color: var(--gold); color: var(--gold); }
+  .tech-pill span { display: block; font-size: 1.5rem; margin-bottom: .5rem; }
+
+  /* ── CLIENTS ── */
+  #clients { background: var(--warm-white); }
+  .clients-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.2rem; margin-top: 3rem; }
+  .client-card {
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 8px; padding: 1.6rem 1rem;
+    text-align: center; transition: border-color .3s, box-shadow .3s;
+  }
+  .client-card:hover { border-color: var(--gold); box-shadow: var(--shadow); }
+  .client-icon { font-size: 1.8rem; margin-bottom: .7rem; }
+  .client-name { font-size: .82rem; font-weight: 600; color: var(--charcoal); margin-bottom: .3rem; }
+  .client-type { font-size: .72rem; color: var(--light); }
+
+  /* ── CTA ── */
+  #cta {
+    background: linear-gradient(135deg, #1A1A1A 0%, #2A2218 50%, #1A1A1A 100%);
+    text-align: center; padding: 8rem 6vw;
+    position: relative; overflow: hidden;
+  }
+  #cta::before {
+    content: '';
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,169,110,.12) 0%, transparent 70%);
+  }
+  #cta .section-title { color: #fff; max-width: 700px; margin: 0 auto 1.2rem; }
+  #cta .section-tag { display: block; text-align: center; margin-bottom: 1rem; }
+  #cta p { color: rgba(255,255,255,.6); max-width: 500px; margin: 0 auto 2.5rem; font-size: 1rem; line-height: 1.75; }
+  .cta-btn {
+    background: var(--gold); color: var(--charcoal);
+    padding: 1rem 2.5rem; border-radius: 2px;
+    font-size: .95rem; font-weight: 600; letter-spacing: .06em;
+    text-transform: uppercase; text-decoration: none;
+    display: inline-block; transition: background .25s, transform .2s;
+    position: relative; z-index: 1;
+  }
+  .cta-btn:hover { background: var(--gold-dark); color: #fff; transform: translateY(-2px); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #111; color: rgba(255,255,255,.5);
+    padding: 3rem 6vw;
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer .logo { color: rgba(255,255,255,.8); }
+  footer p { font-size: .8rem; }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: .8rem; color: rgba(255,255,255,.4); text-decoration: none; transition: color .25s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(-10px); }
+  }
+  .hero-content > * { animation: fadeUp .8s ease both; }
+  .hero-content > *:nth-child(1) { animation-delay: .1s; }
+  .hero-content > *:nth-child(2) { animation-delay: .25s; }
+  .hero-content > *:nth-child(3) { animation-delay: .4s; }
+  .hero-content > *:nth-child(4) { animation-delay: .55s; }
+  .hcard.main  { animation: float 6s ease-in-out infinite; }
+  .hcard.float1 { animation: float 4.5s ease-in-out infinite 1s; }
+  .hcard.float2 { animation: float 5s ease-in-out infinite .5s; }
+
+  .reveal {
+    opacity: 0; transform: translateY(28px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    #hero { grid-template-columns: 1fr; padding-top: 7rem; }
+    .hero-visual { display: none; }
+    .hero-bg-shape { display: none; }
+    .about-grid, .how-grid { grid-template-columns: 1fr; }
+    #stats { grid-template-columns: repeat(2,1fr); }
+    .domains-grid { grid-template-columns: repeat(2,1fr); }
+    .services-grid { grid-template-columns: 1fr; }
+    .tech-grid { grid-template-columns: repeat(3,1fr); }
+    .clients-grid { grid-template-columns: repeat(2,1fr); }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="logo">Virtuoso</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#domains">Domains</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#tech">Technology</a></li>
+    <li><a href="#clients">Clients</a></li>
+  </ul>
+  <a href="#cta" class="nav-cta">Get In Touch</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-shape"></div>
+  <div class="hero-content">
+    <div class="hero-tag">India's Premier Software Consultancy</div>
+    <h1>We Build Products<br><em>Users Love</em></h1>
+    <p class="hero-desc">Sovix delivers world-class software testing, web development, and mobile solutions — with world-class code standards at competitive rates from India.</p>
+    <div class="hero-btns">
+      <a href="#services" class="btn-primary">Explore Services →</a>
+      <a href="https://Sovix.co/" target="_blank" class="btn-outline">Visit Website ↗</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-stack">
+      <div class="hcard main">
+        <div class="hcard-num">100+</div>
+        <div class="hcard-label">Projects Delivered</div>
+        <div class="hcard-bar"><div class="hcard-bar-fill" style="width:85%"></div></div>
+        <div class="hcard-dots">
+          <div class="dot active"></div><div class="dot active"></div><div class="dot active"></div><div class="dot"></div>
+        </div>
+      </div>
+      <div class="hcard float1">
+        <div class="hcard-num">8+</div>
+        <div class="hcard-label">Industries</div>
+        <div class="hcard-bar" style="margin-top:.6rem"><div class="hcard-bar-fill" style="width:70%"></div></div>
+      </div>
+      <div class="hcard float2">
+        <div class="hcard-num">98%</div>
+        <div class="hcard-label">Client Satisfaction</div>
+        <div class="hcard-bar" style="margin-top:.6rem"><div class="hcard-bar-fill" style="width:98%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div id="stats">
+  <div class="stat reveal">
+    <div class="stat-num">100+</div>
+    <div class="stat-label">Projects Delivered</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.1s">
+    <div class="stat-num">8+</div>
+    <div class="stat-label">Industry Domains</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.2s">
+    <div class="stat-num">15+</div>
+    <div class="stat-label">Happy Clients</div>
+  </div>
+  <div class="stat reveal" style="transition-delay:.3s">
+    <div class="stat-num">360°</div>
+    <div class="stat-label">IT Solutions</div>
+  </div>
+</div>
+
+<!-- WHO WE ARE -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual reveal">
+      <div class="about-img-frame">
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <svg viewBox="0 0 120 120" width="180" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="60" cy="60" r="55" fill="none" stroke="#C9A96E" stroke-width="1"/>
+            <circle cx="60" cy="60" r="40" fill="none" stroke="#C9A96E" stroke-width=".5" stroke-dasharray="4 4"/>
+            <text x="60" y="55" text-anchor="middle" font-family="Cormorant Garamond" font-size="22" fill="#C9A96E" font-weight="700">VS</text>
+            <text x="60" y="72" text-anchor="middle" font-family="DM Sans" font-size="7" fill="#9A7A4A" letter-spacing="3">SOVIX</text>
+          </svg>
+        </div>
+      </div>
+      <div class="about-badge">
+        <span class="about-badge-num">360°</span>
+        <span class="about-badge-text">IT Solutions</span>
+      </div>
+    </div>
+    <div class="about-content reveal" style="transition-delay:.15s">
+      <span class="section-tag">Who We Are</span>
+      <h2 class="section-title">A 360° Solution for All Your IT Needs</h2>
+      <p class="section-sub">We are experts in web development, mobile app development, software testing, design, and training. Every project is customized based on special feature requirements and market conditions.</p>
+      <ul class="about-list">
+        <li>Founded as a quest to utilize technological advancement for people's betterment</li>
+        <li>Helped startups, SMBs, and enterprises navigate complex digital challenges</li>
+        <li>Custom solutions that escalate productivity, value, and yield of your business</li>
+        <li>Client list spans service agencies, hospitals, builders, architects, and more</li>
+      </ul>
+      <a href="https://Sovix.co/" target="_blank" class="btn-primary" style="margin-top:.5rem; width:fit-content">Learn More →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DOMAIN EXPERTISE -->
+<section id="domains">
+  <div style="text-align:center" class="reveal">
+    <span class="section-tag">Domain Expertise</span>
+    <h2 class="section-title">Industries We Serve</h2>
+    <p class="section-sub" style="margin:0 auto">We convert your dreams into products using premium code quality that is highly reliable across every sector.</p>
+  </div>
+  <div class="domains-grid">
+    <div class="domain-card reveal">
+      <div class="domain-icon">🛒</div>
+      <div class="domain-name">E-Commerce</div>
+      <div class="domain-desc">Scalable online stores with seamless checkout, inventory, and customer experience.</div>
+    </div>
+    <div class="domain-card reveal" style="transition-delay:.1s">
+      <div class="domain-icon">🎓</div>
+      <div class="domain-name">E-Learning</div>
+      <div class="domain-desc">Interactive learning platforms for institutions, coaches, and course creators.</div>
+    </div>
+    <div class="domain-card reveal" style="transition-delay:.15s">
+      <div class="domain-icon">🍽️</div>
+      <div class="domain-name">Restaurant</div>
+      <div class="domain-desc">Digital menus, ordering systems, and reservation management solutions.</div>
+    </div>
+    <div class="domain-card reveal" style="transition-delay:.2s">
+      <div class="domain-icon">🎮</div>
+      <div class="domain-name">Gaming</div>
+      <div class="domain-desc">Immersive gaming experiences with robust backend and real-time capabilities.</div>
+    </div>
+    <div class="domain-card reveal" style="transition-delay:.25s">
+      <div class="domain-icon">🏥</div>
+      <div class="domain-name">Healthcare</div>
+      <div class="domain-desc">HIPAA-aware patient portals, appointment systems, and hospital management tools.</div>
+    </div>
+    <div class="domain-card reveal" style="transition-delay:.3s">
+      <div class="domain-icon">🚚</div>
+      <div class="domain-name">Logistics</div>
+      <div class="domain-desc">Supply chain tracking, route optimization, and fleet management platforms.</div>
+    </div>
+    <div class="domain-card reveal" style="transition-delay:.35s">
+      <div class="domain-icon">📱</div>
+      <div class="domain-name">Social Media</div>
+      <div class="domain-desc">Community platforms, engagement tools, and social-first mobile apps.</div>
+    </div>
+    <div class="domain-card reveal" style="transition-delay:.4s">
+      <div class="domain-icon">🏢</div>
+      <div class="domain-name">Real Estate</div>
+      <div class="domain-desc">Property listing portals, virtual tours, and CRM for realtors and builders.</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how">
+  <div class="how-grid">
+    <div class="reveal">
+      <span class="section-tag">How It Works</span>
+      <h2 class="section-title">From Concept to Delivery</h2>
+      <p class="section-sub" style="margin-bottom:2rem">Our proven three-step process ensures your project is delivered on time, on budget, and above expectations.</p>
+      <div class="how-steps">
+        <div class="how-step">
+          <div class="step-num">01</div>
+          <div class="step-content">
+            <h3>Discover & Plan</h3>
+            <p>We deep-dive into your requirements, market conditions, and unique feature needs to craft a tailored development roadmap.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">02</div>
+          <div class="step-content">
+            <h3>Design & Build</h3>
+            <p>Our team designs and develops with world-class code standards using modern technology stacks suited to your project.</p>
+          </div>
+        </div>
+        <div class="how-step">
+          <div class="step-num">03</div>
+          <div class="step-content">
+            <h3>Test & Deliver</h3>
+            <p>Rigorous QA testing across all segments ensures a flawless, production-ready product delivered to you on time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="specialization-cards reveal" style="transition-delay:.2s; padding-top:3.5rem">
+      <div class="spec-card">
+        <h4>🏗️ Our Specializations</h4>
+        <p>We specialize in building SaaS products, critical multi-system solutions, and innovative data platforms that scale.</p>
+      </div>
+      <div class="spec-card">
+        <h4>⚙️ Technology We Use</h4>
+        <p>Our team is proficient in SQL, Microsoft Azure, ReactJS, Node.js, Next.js, Flutter, Java, SOAP, PgAdmin4 and many more technologies.</p>
+      </div>
+      <div class="spec-card">
+        <h4>💰 Financial Cost</h4>
+        <p>We understand cost concerns for tech companies. That's why we offer highly competitive rates that come within your budget — operating from India gives us that edge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal" style="text-align:center">
+    <span class="section-tag">Our Services</span>
+    <h2 class="section-title">What We Deliver</h2>
+    <p class="section-sub" style="margin:0 auto">Comprehensive IT services tailored to accelerate your business growth.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">🌐</div>
+      <div class="service-title">Web Development</div>
+      <p class="service-desc">We build, create, and maintain websites — including web design, web publishing, web programming, and database management. Full-stack applications that work seamlessly over the internet.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay:.1s">
+      <div class="service-icon">🔍</div>
+      <div class="service-title">Software Testing</div>
+      <p class="service-desc">Our dedicated QA teams perform quality verification across e-commerce, healthcare, media & entertainment, travel, and business solutions. Comprehensive testing for every market segment.</p>
+    </div>
+    <div class="service-card reveal" style="transition-delay:.2s">
+      <div class="service-icon">📚</div>
+      <div class="service-title">Technical Training</div>
+      <p class="service-desc">Software QA testing is easy to learn. Our training programs run 6–10 weeks for QA testing and 12–26 weeks for web development — equipping your team with real, job-ready skills.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="tech">
+  <div class="reveal">
+    <span class="section-tag">Technologies</span>
+    <h2 class="section-title">Our Technology Stack</h2>
+    <p class="section-sub">We convert your dreams into products using premium-coded quality that is highly reliable.</p>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-pill reveal"><span>▲</span>Next.js</div>
+    <div class="tech-pill reveal" style="transition-delay:.05s"><span>🐦</span>Flutter</div>
+    <div class="tech-pill reveal" style="transition-delay:.1s"><span>🐘</span>PHP</div>
+    <div class="tech-pill reveal" style="transition-delay:.15s"><span>💚</span>Vue.js</div>
+    <div class="tech-pill reveal" style="transition-delay:.2s"><span>🍃</span>MongoDB</div>
+    <div class="tech-pill reveal" style="transition-delay:.25s"><span>⚛️</span>React</div>
+    <div class="tech-pill reveal" style="transition-delay:.3s"><span>☕</span>Java</div>
+    <div class="tech-pill reveal" style="transition-delay:.35s"><span>🟢</span>Node.js</div>
+    <div class="tech-pill reveal" style="transition-delay:.4s"><span>🐬</span>MySQL</div>
+    <div class="tech-pill reveal" style="transition-delay:.45s"><span>☁️</span>Azure</div>
+    <div class="tech-pill reveal" style="transition-delay:.5s"><span>🐘</span>PostgreSQL</div>
+    <div class="tech-pill reveal" style="transition-delay:.55s"><span>📱</span>React Native</div>
+  </div>
+</section>
+
+<!-- CLIENTS -->
+<section id="clients">
+  <div class="reveal" style="text-align:center">
+    <span class="section-tag">Happy Customers</span>
+    <h2 class="section-title">Brands That Trust Us</h2>
+    <p class="section-sub" style="margin:0 auto">Our clients' success is our greatest achievement. Here are some of the businesses we've proudly served.</p>
+  </div>
+  <div class="clients-grid">
+    <div class="client-card reveal">
+      <div class="client-icon">🏥</div>
+      <div class="client-name">Lovely Cocada Hospital</div>
+      <div class="client-type">Healthcare Systems</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.06s">
+      <div class="client-icon">🪟</div>
+      <div class="client-name">UPVC Manufacturing Co.</div>
+      <div class="client-type">Product Manufacturing</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.12s">
+      <div class="client-icon">💻</div>
+      <div class="client-name">SSP Technologies</div>
+      <div class="client-type">Technology</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.18s">
+      <div class="client-icon">📷</div>
+      <div class="client-name">CCTV Security Systems</div>
+      <div class="client-type">Security Solutions</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.24s">
+      <div class="client-icon">🎨</div>
+      <div class="client-name">Hello Colours</div>
+      <div class="client-type">Painting Agency</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.3s">
+      <div class="client-icon">👗</div>
+      <div class="client-name">Fog Fashion</div>
+      <div class="client-type">Fashion Events</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.36s">
+      <div class="client-icon">🏛️</div>
+      <div class="client-name">Government Library</div>
+      <div class="client-type">Government Project</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.42s">
+      <div class="client-icon">🥗</div>
+      <div class="client-name">Diet Gravers</div>
+      <div class="client-type">Restaurant</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.48s">
+      <div class="client-icon">💪</div>
+      <div class="client-name">Functional Fitness Academy</div>
+      <div class="client-type">Multi Fitness Academy</div>
+    </div>
+    <div class="client-card reveal" style="transition-delay:.54s">
+      <div class="client-icon">🏋️</div>
+      <div class="client-name">Evolt Training</div>
+      <div class="client-type">Gym</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <span class="section-tag">Ready to Start?</span>
+  <h2 class="section-title">Let's Build Something <em>Extraordinary</em></h2>
+  <p>Tell us about your project. We'll be glad to help you outsource it to us and bring your vision to life with world-class standards.</p>
+  <a href="https://Sovix.co/" target="_blank" class="cta-btn">Start Your Project →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo">Virtuoso</a>
+  <p>© 2024 Sovix. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="https://Sovix.co/" target="_blank">Website</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#cta">Contact</a>
+  </div>
+</footer>
+
+<script>
+  // Navbar scroll shadow
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // Reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
