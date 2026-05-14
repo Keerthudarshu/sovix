@@ -111,8 +111,8 @@
       align-items: center;
       z-index: 1000;
       transition: all 0.3s;
-      background: #080c17;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      background: #F8FAFF;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
     }
 
     /* Carousel indicators style */
@@ -141,12 +141,21 @@
     }
 
     .logo {
-      font-family: 'Montserrat', sans-serif;
-      font-weight: 900;
-      font-size: 1.6rem;
-      color: var(--white);
-      letter-spacing: 2px;
+      display: flex;
+      align-items: center;
       cursor: pointer;
+      z-index: 1001;
+    }
+
+    .logo img {
+      height: 60px;
+      width: auto;
+      display: block;
+      transition: transform 0.3s;
+    }
+
+    .logo:hover img {
+      transform: scale(1.05);
     }
 
     .logo span {
@@ -160,7 +169,7 @@
     }
 
     .nav-links a {
-      color: rgba(255, 255, 255, 0.8);
+      color: #0F172A;
       text-decoration: none;
       font-size: 0.95rem;
       font-weight: 600;
@@ -168,7 +177,7 @@
     }
 
     .nav-links a:hover {
-      color: var(--accent);
+      color: #3B82F6;
     }
 
     .nav-cta {
@@ -197,7 +206,7 @@
     .hamburger span {
       width: 25px;
       height: 3px;
-      background: var(--white);
+      background: #0F172A;
       border-radius: 3px;
       transition: all 0.3s;
     }
@@ -1100,10 +1109,14 @@
     }
 
     .footer-logo {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 900;
       margin-bottom: 1rem;
+      display: inline-block;
+    }
+
+    .footer-logo img {
+      height: 50px;
+      width: auto;
+      display: block;
     }
 
     .footer-logo span {
@@ -1441,12 +1454,13 @@
         top: 70px;
         left: 0;
         right: 0;
-        background: rgba(10, 14, 26, 0.98);
+        background: #F8FAFF;
         flex-direction: column;
         gap: 0;
         padding: 0;
         display: none;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       }
 
       .nav-links.active {
@@ -1455,7 +1469,7 @@
 
       .nav-links li {
         width: 100%;
-        border-bottom: 1px solid rgba(37, 99, 235, 0.1);
+        border-bottom: 1px solid rgba(15, 23, 42, 0.05);
       }
 
       .nav-links a {
@@ -1629,7 +1643,7 @@
 
   <!-- NAVBAR -->
   <nav>
-    <div class="logo" onclick="showPage('home')">SOVIXS</div>
+    <div class="logo" onclick="showPage('home')"><img src="image/sovix logo.png" alt="Sovix Logo"></div>
     <div class="hamburger" onclick="toggleMenu()">
       <span></span>
       <span></span>
@@ -1941,7 +1955,7 @@
     <footer>
       <div class="footer-grid">
         <div>
-          <div class="footer-logo">SOVIXS</div>
+          <div class="footer-logo"><img src="image/sovix logo.png" alt="Sovix Logo"></div>
           <p class="footer-desc">One of the best & affordable consultancies. We build products that users like.
             Operating from India with world-class code standards.</p>
           <a href="https://Sovixs.co/" target="_blank" class="footer-link">🌐 Sovixs.co</a>
@@ -2086,7 +2100,7 @@
     <footer>
       <div class="footer-grid">
         <div>
-          <div class="footer-logo">SOVIXS</div>
+          <div class="footer-logo"><img src="image/sovix logo.png" alt="Sovix Logo"></div>
           <p class="footer-desc">One of the best & affordable consultancies. We build products that users like.
             Operating from India with world-class code standards.</p>
           <a href="https://Sovixs.co/" target="_blank" class="footer-link">🌐 Sovixs.co</a>
